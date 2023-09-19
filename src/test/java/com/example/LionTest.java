@@ -2,11 +2,14 @@ package com.example;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static com.example.Animal.foodPredator;
+import static com.example.Lion.animalSexFemale;
 import static com.example.Lion.animalSexMale;
+import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 @RunWith(MockitoJUnitRunner.class)
@@ -22,21 +25,27 @@ public class LionTest {
     }
 
     @Test
-    public void getKittens() {
-        lion.getKittens();
-        Mockito.verify(lion).getKittens();
+    public void getKittens() throws Exception {
+        Lion lion = new Lion(feline, animalSexMale);
+        assertEquals(1, lion.getKittens());
     }
 
     @Test
-    public void doesHaveMane() {
-        lion.doesHaveMane();
-        Mockito.verify(lion).doesHaveMane();
+    public void maleDoesHaveMane() throws Exception {
+        Lion lion = new Lion(feline, animalSexMale);
+        assertTrue(lion.doesHaveMane());
+    }
+
+    @Test
+    public void femaleDoesHaveMane() throws Exception {
+        Lion lion = new Lion(feline,animalSexFemale);
+        assertFalse(lion.doesHaveMane());
     }
 
     @Test
     public void getFood() throws Exception {
-        lion.getFood();
-        Mockito.verify(lion).getFood();
+        Lion lion = new Lion(feline, animalSexMale);
+        assertEquals(foodPredator, lion.getFood());
     }
 }
 
